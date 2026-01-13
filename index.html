@@ -3,147 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.T.A.L.K.E.R. Network</title>
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/171/171334.png">
+    <title>S.T.A.L.K.E.R. Protocol</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/566/566939.png">
     
     <meta http-equiv="refresh" content="1;url=steam://connect/212.22.85.40:27015">
 
     <style>
         :root {
-            --toxic: #ff9d00;
-            --danger: #ff3b3b;
+            --toxic-orange: #ff9d00;
+            --toxic-green: #39ff14;
+            --bg-dark: #1c1c1e;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Helvetica, Arial, sans-serif;
             margin: 0;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #050505;
             overflow: hidden;
+            background: #000;
+        }
+
+        /* Атмосферный фон Зоны */
+        .background-zone {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://images.unsplash.com/photo-1622336478085-209731603820?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            filter: blur(30px) brightness(0.5) saturate(1.2);
+            z-index: -2;
+            transform: scale(1.1);
+        }
+
+        /* Свечение аномалий */
+        .anomaly-glow {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 157, 0, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(57, 255, 20, 0.15) 0%, transparent 50%);
+            z-index: -1;
+            animation: pulse 8s infinite alternate;
+        }
+        @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+
+        /* Стеклянная панель */
+        .glass-panel {
+            background: rgba(28, 28, 30, 0.4);
+            backdrop-filter: blur(50px) saturate(150%);
+            -webkit-backdrop-filter: blur(50px) saturate(150%);
+            border-radius: 34px;
+            padding: 40px 30px;
+            width: 320px;
+            text-align: center;
+            border: 1px solid rgba(255, 157, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(255, 157, 0, 0.1);
             color: white;
         }
 
-        /* Мрачный фон Зоны */
-        .bg-image {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('https://images.unsplash.com/photo-1560942485-b2a11cc13456?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
-            background-size: cover;
-            filter: blur(8px) brightness(0.3);
-            z-index: -1;
-        }
-
-        /* Панель КПК */
-        .pda-panel {
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 157, 0, 0.3);
-            border-radius: 20px;
-            padding: 50px 30px;
-            width: 320px;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(255, 157, 0, 0.05);
-            position: relative;
-        }
-
-        /* ТВОЯ ИКОНКА РАДИАЦИИ */
-        .radiation-icon {
-            width: 100px; /* Крупный размер */
-            height: 100px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(255, 157, 0, 0.6)); /* Свечение */
-            animation: pulse-icon 3s infinite alternate;
+        /* ИЗМЕНЕННАЯ ИКОНКА */
+        .rad-icon-container {
+            /* Убрали фон и рамки, оставили только центрирование */
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        @keyframes pulse-icon {
-            0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 157, 0, 0.6)); }
-            100% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(255, 157, 0, 1)); }
+        .rad-symbol-glowing {
+            /* Маска превращает черную PNG в белую */
+            mask: url('https://cdn-icons-png.flaticon.com/512/566/566939.png') no-repeat center / contain;
+            -webkit-mask: url('https://cdn-icons-png.flaticon.com/512/566/566939.png') no-repeat center / contain;
+            background-color: white;
+            width: 70px; height: 70px;
+            
+            /* Добавляем мощное белое и оранжевое свечение */
+            filter: drop-shadow(0 0 5px white) drop-shadow(0 0 15px var(--toxic-orange));
+            animation: radioactive-pulse 2s infinite alternate;
         }
+
+        @keyframes radioactive-pulse {
+            from { filter: drop-shadow(0 0 2px white) drop-shadow(0 0 10px var(--toxic-orange)); opacity: 0.8; }
+            to { filter: drop-shadow(0 0 10px white) drop-shadow(0 0 25px var(--toxic-orange)); opacity: 1; }
+        }
+
 
         h1 {
+            font-weight: 700;
             font-size: 24px;
-            margin: 0 0 10px 0;
+            margin: 0 0 8px 0;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #f0f0f0;
-            text-shadow: 0 2px 4px black;
+            text-shadow: 0 0 10px rgba(255, 157, 0, 0.5);
         }
 
-        p {
-            font-size: 14px;
-            color: var(--toxic);
-            margin: 0 0 30px 0;
-            font-family: monospace;
+        .subtitle {
+            font-size: 13px;
+            color: var(--toxic-orange);
+            font-weight: 600;
             letter-spacing: 1px;
+            margin-bottom: 25px;
+            opacity: 0.8;
         }
 
         /* Кнопка */
-        .btn {
+        .ios-btn-toxic {
             display: block;
             width: 100%;
-            background: linear-gradient(90deg, #d35400, #e67e22);
+            background: linear-gradient(to right, var(--toxic-orange), #ff5e00);
             color: white;
             text-decoration: none;
-            padding: 15px 0;
-            border-radius: 8px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(211, 84, 0, 0.4);
-            border: 1px solid #d35400;
+            padding: 16px 0;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 15px rgba(255, 94, 0, 0.4);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(211, 84, 0, 0.6);
-            background: linear-gradient(90deg, #e67e22, #d35400);
+        .ios-btn-toxic:active {
+            transform: scale(0.97);
+            filter: brightness(0.9);
         }
-
-        .loader {
+        
+        /* Индикатор загрузки "Счетчик Гейгера" */
+        .geiger-loader {
             margin-top: 25px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-            width: 100%;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .blip {
+            width: 8px; height: 8px;
+            background-color: var(--toxic-green);
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: geiger 1s infinite;
+            box-shadow: 0 0 5px var(--toxic-green);
+        }
+        @keyframes geiger {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            10% { opacity: 1; transform: scale(1.2); }
         }
 
-        .loader::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; bottom: 0;
-            width: 50%;
-            background: var(--toxic);
-            animation: loading 1.5s infinite ease-in-out;
-            box-shadow: 0 0 10px var(--toxic);
-        }
-
-        @keyframes loading {
-            0% { left: -50%; }
-            100% { left: 100%; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="bg-image"></div>
+    <div class="background-zone"></div>
+    <div class="anomaly-glow"></div>
 
-    <div class="pda-panel">
-        <img src="https://cdn-icons-png.flaticon.com/512/171/171334.png" alt="Radiation" class="radiation-icon">
+    <div class="glass-panel">
+        <div class="rad-icon-container">
+            <div class="rad-symbol-glowing"></div>
+        </div>
         
-        <h1>ВНИМАНИЕ</h1>
-        <p>// ПОДКЛЮЧЕНИЕ К ЗОНЕ //</p>
-        
-        <a href="steam://connect/212.22.85.40:27015" class="btn">
-            Войти на сервер
+        <h1>S.T.A.L.K.E.R.</h1>
+        <div class="subtitle">// PDA NETWORK LINK //</div>
+
+        <a href="steam://connect/212.22.85.40:27015" class="ios-btn-toxic">
+            ВХОД В ЗОНУ
         </a>
-
-        <div class="loader"></div>
+        
+        <div class="geiger-loader">
+            <div class="blip"></div> Establishing connection...
+        </div>
     </div>
 
     <script>
@@ -151,5 +181,7 @@
             window.location.href = "steam://connect/212.22.85.40:27015";
         }, 1000);
     </script>
+
 </body>
 </html>
+
