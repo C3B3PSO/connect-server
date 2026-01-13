@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.T.A.L.K.E.R. Network</title>
     
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/b/b5/Radioactive.svg">
+    <link rel="icon" href="https://drive.google.com/uc?export=view&id=1Tr6s1byYw_yTNbzkIei8nXK1AyY5NIkv">
     
     <meta http-equiv="refresh" content="1;url=steam://connect/212.22.85.40:27015">
 
@@ -26,7 +26,7 @@
             background: #000;
         }
 
-        /* Фон Зоны */
+        /* Фон */
         .background-zone {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -37,7 +37,6 @@
             transform: scale(1.1);
         }
 
-        /* Анимация фона */
         .anomaly-glow {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -64,23 +63,21 @@
             align-items: center;
         }
 
-        /* ИКОНКА С ВИКИПЕДИИ */
-        .rad-icon-img {
-            width: 90px;
-            height: 90px;
+        /* ТВОЯ КАРТИНКА С ДИСКА */
+        .rad-icon-custom {
+            width: 100px;
+            height: 100px;
             margin-bottom: 20px;
+            object-fit: contain;
             
-            /* МАГИЯ ЦВЕТА: */
-            /* 1. invert(1) делает черную картинку белой */
-            /* 2. drop-shadow добавляет цветное свечение */
-            filter: invert(1) drop-shadow(0 0 15px var(--toxic-orange));
-            
+            /* Свечение вокруг твоей картинки */
+            filter: drop-shadow(0 0 15px var(--toxic-orange));
             animation: radioactive-pulse 3s infinite alternate;
         }
 
         @keyframes radioactive-pulse {
-            from { filter: invert(1) drop-shadow(0 0 5px var(--toxic-orange)); transform: scale(1); }
-            to { filter: invert(1) drop-shadow(0 0 20px var(--toxic-orange)); transform: scale(1.05); }
+            from { filter: drop-shadow(0 0 5px var(--toxic-orange)); transform: scale(1); }
+            to { filter: drop-shadow(0 0 20px var(--toxic-orange)); transform: scale(1.05); }
         }
 
         h1 {
@@ -148,7 +145,7 @@
     <div class="anomaly-glow"></div>
 
     <div class="glass-panel">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Radioactive.svg" class="rad-icon-img" alt="Radiation">
+        <img src="https://drive.google.com/uc?export=view&id=1Tr6s1byYw_yTNbzkIei8nXK1AyY5NIkv" class="rad-icon-custom" alt="S.T.A.L.K.E.R.">
         
         <h1>S.T.A.L.K.E.R.</h1>
         <div class="subtitle">// PDA NETWORK LINK //</div>
