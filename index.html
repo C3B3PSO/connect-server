@@ -26,7 +26,7 @@
             background: #000;
         }
 
-        /* Фон */
+        /* Фон Зоны */
         .background-zone {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -37,6 +37,7 @@
             transform: scale(1.1);
         }
 
+        /* Пульсация фона */
         .anomaly-glow {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -46,7 +47,7 @@
         }
         @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        /* Панель */
+        /* Стеклянная панель */
         .glass-panel {
             background: rgba(28, 28, 30, 0.4);
             backdrop-filter: blur(50px) saturate(150%);
@@ -63,21 +64,21 @@
             align-items: center;
         }
 
-        /* ТВОЯ КАРТИНКА С ДИСКА */
-        .rad-icon-custom {
+        /* ТВОЯ НОВАЯ ИКОНКА */
+        .rad-icon-final {
             width: 100px;
             height: 100px;
             margin-bottom: 20px;
             object-fit: contain;
             
-            /* Свечение вокруг твоей картинки */
+            /* Добавляем оранжевое свечение вокруг белой иконки */
             filter: drop-shadow(0 0 15px var(--toxic-orange));
             animation: radioactive-pulse 3s infinite alternate;
         }
 
         @keyframes radioactive-pulse {
             from { filter: drop-shadow(0 0 5px var(--toxic-orange)); transform: scale(1); }
-            to { filter: drop-shadow(0 0 20px var(--toxic-orange)); transform: scale(1.05); }
+            to { filter: drop-shadow(0 0 25px var(--toxic-orange)); transform: scale(1.05); }
         }
 
         h1 {
@@ -145,7 +146,7 @@
     <div class="anomaly-glow"></div>
 
     <div class="glass-panel">
-        <img src="https://drive.google.com/uc?export=view&id=1Tr6s1byYw_yTNbzkIei8nXK1AyY5NIkv" class="rad-icon-custom" alt="S.T.A.L.K.E.R.">
+        <img src="https://www.iconsdb.com/icons/preview/white/radioactive-xxl.png" class="rad-icon-final" alt="S.T.A.L.K.E.R.">
         
         <h1>S.T.A.L.K.E.R.</h1>
         <div class="subtitle">// PDA NETWORK LINK //</div>
