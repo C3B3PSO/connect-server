@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.T.A.L.K.E.R. Network</title>
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☢️</text></svg>">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/b/b5/Radioactive.svg">
     
     <meta http-equiv="refresh" content="1;url=steam://connect/212.22.85.40:27015">
 
@@ -13,7 +13,6 @@
         :root {
             --toxic-orange: #ff9d00;
             --toxic-green: #39ff14;
-            --bg-dark: #1c1c1e;
         }
 
         body {
@@ -27,7 +26,7 @@
             background: #000;
         }
 
-        /* Фон */
+        /* Фон Зоны */
         .background-zone {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -38,6 +37,7 @@
             transform: scale(1.1);
         }
 
+        /* Анимация фона */
         .anomaly-glow {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -64,19 +64,23 @@
             align-items: center;
         }
 
-        /* ПРАВИЛЬНАЯ SVG ИКОНКА */
-        .rad-icon-svg {
+        /* ИКОНКА С ВИКИПЕДИИ */
+        .rad-icon-img {
             width: 90px;
             height: 90px;
-            fill: white;
             margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 20px var(--toxic-orange));
+            
+            /* МАГИЯ ЦВЕТА: */
+            /* 1. invert(1) делает черную картинку белой */
+            /* 2. drop-shadow добавляет цветное свечение */
+            filter: invert(1) drop-shadow(0 0 15px var(--toxic-orange));
+            
             animation: radioactive-pulse 3s infinite alternate;
         }
 
         @keyframes radioactive-pulse {
-            from { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 10px var(--toxic-orange)); }
-            to { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1)) drop-shadow(0 0 30px var(--toxic-orange)); }
+            from { filter: invert(1) drop-shadow(0 0 5px var(--toxic-orange)); transform: scale(1); }
+            to { filter: invert(1) drop-shadow(0 0 20px var(--toxic-orange)); transform: scale(1.05); }
         }
 
         h1 {
@@ -139,20 +143,13 @@
     </style>
 </head>
 <body>
+
     <div class="background-zone"></div>
     <div class="anomaly-glow"></div>
 
     <div class="glass-panel">
-        <svg class="rad-icon-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-            <path d="M256,92c-23.7,0-43,19.3-43,43s19.3,43,43,43s43-19.3,43-43S279.7,92,256,92z"/>
-            <path d="M276.5,189.5C270,192.3,263.1,194,256,194s-14-1.7-20.5-4.5L108,416.5c10.4,6,22,10.6,34.2,13.6
-                c12.3,3,25.2,4.8,38.3,5.4c13,0.6,26.2,0.6,39.3,0c26-1.1,51.4-5.6,75.3-13.4c11.9-3.9,23.3-9,34-15.1L276.5,189.5z"/>
-            <path d="M473.6,180.8c-7.9-20.9-19.2-40.2-33.3-57.1c-14-16.9-30.8-31.5-49.6-43.2c-18.9-11.7-40-20.4-62.5-25.5
-                c-11.2-2.6-22.7-4.3-34.3-5.2l-23.4,255.7l0,0l26.1-45.2C344.4,213.6,399.7,196.4,473.6,180.8z"/>
-            <path d="M216,305.5l26.1,45.2l0,0L218.2,50c-35.3,2.6-69.2,14.6-98.3,34.2c-29.2,19.6-53.5,46.1-70.4,76.6
-                c-8.4,15.2-15.1,31.4-19.8,48.2c-4.7,16.8-7.3,34.2-7.8,51.8C95.9,276.5,152,293.7,216,305.5z"/>
-        </svg>
-
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Radioactive.svg" class="rad-icon-img" alt="Radiation">
+        
         <h1>S.T.A.L.K.E.R.</h1>
         <div class="subtitle">// PDA NETWORK LINK //</div>
 
