@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.T.A.L.K.E.R. Network</title>
+    <title>S.T.A.L.K.E.R. PDA</title>
     
-    <link rel="icon" href="https://www.iconsdb.com/icons/preview/white/radioactive-xxl.png">
+    <link rel="icon" href="IMG_4614.png">
     
     <meta http-equiv="refresh" content="1;url=steam://connect/212.22.85.40:27015">
 
@@ -16,7 +16,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
             margin: 0;
             height: 100vh;
             display: flex;
@@ -26,68 +26,67 @@
             background: #000;
         }
 
-        /* Фон Зоны */
+        /* Атмосферный фон Зоны */
         .background-zone {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: url('https://images.unsplash.com/photo-1622336478085-209731603820?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
             background-size: cover;
-            filter: blur(30px) brightness(0.5) saturate(1.2);
+            filter: blur(30px) brightness(0.4) saturate(1.2);
             z-index: -2;
             transform: scale(1.1);
         }
 
-        /* Пульсация фона */
+        /* Свечение аномалий */
         .anomaly-glow {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(circle at 50% 50%, rgba(255, 157, 0, 0.15) 0%, transparent 70%);
             z-index: -1;
-            animation: pulse 4s infinite alternate;
+            animation: pulse-bg 4s infinite alternate;
         }
-        @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+        @keyframes pulse-bg { 0% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        /* Стеклянная панель */
+        /* Панель PDA */
         .glass-panel {
             background: rgba(28, 28, 30, 0.4);
-            backdrop-filter: blur(50px) saturate(150%);
-            -webkit-backdrop-filter: blur(50px) saturate(150%);
+            backdrop-filter: blur(50px) saturate(160%);
+            -webkit-backdrop-filter: blur(50px) saturate(160%);
             border-radius: 34px;
-            padding: 40px 30px;
+            padding: 45px 30px;
             width: 320px;
             text-align: center;
-            border: 1px solid rgba(255, 157, 0, 0.3);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(255, 157, 0, 0.1);
+            border: 1px solid rgba(255, 157, 0, 0.25);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 20px rgba(255, 157, 0, 0.1);
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* ТВОЯ НОВАЯ ИКОНКА */
-        .rad-icon-final {
+        /* ТВОЙ ЛОГОТИП IMG_4614.png */
+        .rad-logo {
             width: 100px;
             height: 100px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             object-fit: contain;
-            
-            /* Добавляем оранжевое свечение вокруг белой иконки */
-            filter: drop-shadow(0 0 15px var(--toxic-orange));
+            /* Белое свечение + оранжевый ореол */
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.5)) drop-shadow(0 0 20px var(--toxic-orange));
             animation: radioactive-pulse 3s infinite alternate;
         }
 
         @keyframes radioactive-pulse {
-            from { filter: drop-shadow(0 0 5px var(--toxic-orange)); transform: scale(1); }
-            to { filter: drop-shadow(0 0 25px var(--toxic-orange)); transform: scale(1.05); }
+            from { transform: scale(1); filter: drop-shadow(0 0 8px var(--toxic-orange)); }
+            to { transform: scale(1.06); filter: drop-shadow(0 0 25px var(--toxic-orange)); }
         }
 
         h1 {
             font-weight: 700;
-            font-size: 24px;
+            font-size: 26px;
             margin: 0 0 8px 0;
             letter-spacing: 1px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(255, 157, 0, 0.5);
+            text-shadow: 0 0 10px rgba(255, 157, 0, 0.4);
         }
 
         .subtitle {
@@ -97,13 +96,14 @@
             letter-spacing: 2px;
             margin-bottom: 30px;
             opacity: 0.9;
+            text-transform: uppercase;
         }
 
         /* Кнопка */
         .ios-btn-toxic {
             display: block;
             width: 100%;
-            background: linear-gradient(to right, #ff8800, #ff5e00);
+            background: linear-gradient(135deg, #ff9d00, #ff5e00);
             color: white;
             text-decoration: none;
             padding: 16px 0;
@@ -111,12 +111,16 @@
             font-size: 17px;
             font-weight: 700;
             transition: all 0.2s ease;
-            box-shadow: 0 5px 20px rgba(255, 94, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(255, 94, 0, 0.3);
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .ios-btn-toxic:active { transform: scale(0.96); filter: brightness(0.9); }
+        .ios-btn-toxic:active {
+            transform: scale(0.96);
+            filter: brightness(0.9);
+        }
         
+        /* Индикатор Гейгера */
         .geiger-loader {
             margin-top: 25px;
             display: flex;
@@ -131,12 +135,12 @@
             background-color: var(--toxic-green);
             border-radius: 50%;
             margin-right: 10px;
-            animation: geiger 1s infinite;
+            animation: geiger-blip 1s infinite;
             box-shadow: 0 0 8px var(--toxic-green);
         }
-        @keyframes geiger {
+        @keyframes geiger-blip {
             0%, 100% { opacity: 0.3; transform: scale(1); }
-            15% { opacity: 1; transform: scale(1.5); }
+            15% { opacity: 1; transform: scale(1.4); }
         }
     </style>
 </head>
@@ -146,7 +150,7 @@
     <div class="anomaly-glow"></div>
 
     <div class="glass-panel">
-        <img src="https://www.iconsdb.com/icons/preview/white/radioactive-xxl.png" class="rad-icon-final" alt="S.T.A.L.K.E.R.">
+        <img src="IMG_4614.png" class="rad-logo" alt="S.T.A.L.K.E.R.">
         
         <h1>S.T.A.L.K.E.R.</h1>
         <div class="subtitle">// PDA NETWORK LINK //</div>
@@ -161,9 +165,11 @@
     </div>
 
     <script>
+        // Резервный переход через JS
         setTimeout(function() {
             window.location.href = "steam://connect/212.22.85.40:27015";
-        }, 1000);
+        }, 1200);
     </script>
+
 </body>
 </html>
