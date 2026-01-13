@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Link</title>
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Apple_logo_grey.svg">
+    <title>S.T.A.L.K.E.R. Protocol</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/566/566939.png">
     
     <meta http-equiv="refresh" content="1;url=steam://connect/212.22.85.40:27015">
 
     <style>
-        /* Системные шрифты Apple */
+        :root {
+            --toxic-orange: #ff9d00;
+            --toxic-green: #39ff14;
+            --bg-dark: #1c1c1e;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+            /* Системные шрифты Apple для чистоты */
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Helvetica, Arial, sans-serif;
             margin: 0;
             height: 100vh;
             display: flex;
@@ -21,123 +27,151 @@
             background: #000;
         }
 
-        /* Живой фон (Mesh Gradient) */
-        .background-gradient {
+        /* Атмосферный фон Зоны (размытый) */
+        .background-zone {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 10% 20%, rgb(0, 122, 255) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgb(255, 45, 85) 0%, transparent 40%),
-                        radial-gradient(circle at 50% 50%, rgb(88, 86, 214) 0%, transparent 60%);
-            filter: blur(60px);
-            opacity: 0.6;
-            animation: breathe 10s infinite alternate;
-            z-index: -1;
-        }
-        @keyframes breathe {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.1); opacity: 0.7; }
+            /* Фото Припяти или атмосферная текстура */
+            background: url('https://images.unsplash.com/photo-1622336478085-209731603820?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            filter: blur(30px) brightness(0.5) saturate(1.2); /* Сильное размытие и затемнение */
+            z-index: -2;
+            transform: scale(1.1); /* Чтобы не было белых краев при размытии */
         }
 
-        /* Карточка из "умного стекла" */
+        /* Дополнительное свечение аномалий */
+        .anomaly-glow {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 157, 0, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(57, 255, 20, 0.15) 0%, transparent 50%);
+            z-index: -1;
+            animation: pulse 8s infinite alternate;
+        }
+        @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+
+        /* Стеклянная панель (iOS Style) */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.08); /* Очень прозрачный белый */
-            backdrop-filter: blur(40px) saturate(180%); /* Сильное размытие фона */
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border-radius: 34px; /* Фирменное скругление Apple */
+            background: rgba(28, 28, 30, 0.4); /* Темное, но прозрачное */
+            backdrop-filter: blur(50px) saturate(150%); /* Эффект дорогого стекла */
+            -webkit-backdrop-filter: blur(50px) saturate(150%);
+            border-radius: 34px;
             padding: 40px 30px;
             width: 320px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            /* Тонкая рамка, светящаяся оранжевым */
+            border: 1px solid rgba(255, 157, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(255, 157, 0, 0.1);
             color: white;
-            transform: translateZ(0); /* Активация GPU */
         }
 
-        /* Иконка приложения */
-        .app-icon {
+        /* Иконка радиации */
+        .rad-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #1c1c1e, #2c2c2e);
-            border-radius: 20px;
+            /* Градиент от оранжевого к темному */
+            background: linear-gradient(135deg, var(--toxic-orange), var(--bg-dark));
+            border-radius: 22px;
             margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            font-size: 32px;
+            box-shadow: 0 10px 20px rgba(255, 157, 0, 0.3);
+            font-size: 40px;
+        }
+        
+        .rad-symbol {
+            /* Используем SVG маску для цвета */
+            mask: url('https://cdn-icons-png.flaticon.com/512/566/566939.png') no-repeat center / contain;
+            -webkit-mask: url('https://cdn-icons-png.flaticon.com/512/566/566939.png') no-repeat center / contain;
+            background-color: white;
+            width: 50px; height: 50px;
         }
 
         h1 {
-            font-weight: 600;
-            font-size: 22px;
+            font-weight: 700;
+            font-size: 24px;
             margin: 0 0 8px 0;
-            letter-spacing: -0.5px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            /* Небольшое свечение текста */
+            text-shadow: 0 0 10px rgba(255, 157, 0, 0.5);
         }
 
-        p {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.6);
-            margin: 0 0 30px 0;
-            line-height: 1.4;
+        .subtitle {
+            font-size: 13px;
+            color: var(--toxic-orange);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            opacity: 0.8;
         }
 
-        /* Кнопка в стиле iOS Action */
-        .ios-btn {
+        /* Кнопка в стиле iOS, но радиоактивная */
+        .ios-btn-toxic {
             display: block;
             width: 100%;
-            background: #007AFF; /* Apple Blue */
+            /* Ядовитый оранжевый градиент */
+            background: linear-gradient(to right, var(--toxic-orange), #ff5e00);
             color: white;
             text-decoration: none;
-            padding: 14px 0;
-            border-radius: 14px;
+            padding: 16px 0;
+            border-radius: 16px;
             font-size: 17px;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.2s ease;
+            box-shadow: 0 5px 15px rgba(255, 94, 0, 0.4);
         }
 
-        .ios-btn:active {
-            transform: scale(0.96);
-            background: #0062cc;
+        .ios-btn-toxic:active {
+            transform: scale(0.97);
+            filter: brightness(0.9);
         }
         
-        .loading-indicator {
-            margin-top: 20px;
-            width: 30px;
-            height: 3px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 2px;
-            overflow: hidden;
-            margin-left: auto;
-            margin-right: auto;
+        /* Индикатор загрузки "Счетчик Гейгера" */
+        .geiger-loader {
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
         }
-        
-        .loading-bar {
-            height: 100%;
-            background: #fff;
-            width: 0%;
-            animation: load 1.5s ease-in-out forwards;
+        .blip {
+            width: 8px; height: 8px;
+            background-color: var(--toxic-green);
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: geiger 1s infinite;
+            box-shadow: 0 0 5px var(--toxic-green);
         }
-        
-        @keyframes load { to { width: 100%; } }
+        @keyframes geiger {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            10% { opacity: 1; transform: scale(1.2); }
+        }
 
     </style>
 </head>
 <body>
 
-    <div class="background-gradient"></div>
+    <div class="background-zone"></div>
+    <div class="anomaly-glow"></div>
 
     <div class="glass-panel">
-        <div class="app-icon">🎮</div>
+        <div class="rad-icon">
+            <div class="rad-symbol"></div>
+        </div>
         
-        <h1>Game Center</h1>
-        <p>Steam запрашивает разрешение на подключение к серверу.</p>
+        <h1>S.T.A.L.K.E.R.</h1>
+        <div class="subtitle">// PDA NETWORK LINK //</div>
 
-        <a href="steam://connect/212.22.85.40:27015" class="ios-btn">
-            Открыть
+        <a href="steam://connect/212.22.85.40:27015" class="ios-btn-toxic">
+            ВХОД В ЗОНУ
         </a>
         
-        <div class="loading-indicator">
-            <div class="loading-bar"></div>
+        <div class="geiger-loader">
+            <div class="blip"></div> Establishing connection...
         </div>
     </div>
 
@@ -149,4 +183,3 @@
 
 </body>
 </html>
-
